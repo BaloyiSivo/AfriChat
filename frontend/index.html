@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>AfriChat</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+<!-- =========================
+     AUTH SCREEN
+========================= -->
+
+<main id="authScreen" class="auth-container">
+
+    <section class="brand">
+
+        <div class="logo">
+            A
+        </div>
+
+        <h1>
+            AfriChat
+        </h1>
+
+        <p>
+            Connect and communicate with your university community.
+        </p>
+
+    </section>
+
+
+    <section class="auth-card">
+
+        <div class="tabs">
+
+            <button
+                id="loginTab"
+                class="tab active"
+                type="button"
+            >
+                Login
+            </button>
+
+            <button
+                id="registerTab"
+                class="tab"
+                type="button"
+            >
+                Create account
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <form id="loginForm">
+
+            <h2>
+                Welcome back
+            </h2>
+
+            <p class="form-description">
+                Login to continue chatting with your friends.
+            </p>
+
+
+            <label for="loginEmail">
+                Email
+            </label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="you@example.com"
+                required
+            >
+
+
+            <label for="loginPassword">
+                Password
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Your password"
+                required
+            >
+
+
+            <button
+                class="primary-button"
+                type="submit"
+            >
+                Login
+            </button>
+
+            <p
+                id="loginMessage"
+                class="message"
+            ></p>
+
+        </form>
+
+
+        <!-- REGISTER -->
+
+        <form
+            id="registerForm"
+            class="hidden"
+        >
+
+            <h2>
+                Create your account
+            </h2>
+
+            <p class="form-description">
+                Join AfriChat and start communicating.
+            </p>
+
+
+            <label for="registerUsername">
+                Username
+            </label>
+
+            <input
+                id="registerUsername"
+                type="text"
+                placeholder="Choose a username"
+                minlength="3"
+                maxlength="30"
+                required
+            >
+
+
+            <label for="registerEmail">
+                Email
+            </label>
+
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="you@example.com"
+                required
+            >
+
+
+            <label for="registerPassword">
+                Password
+            </label>
+
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="At least 8 characters"
+                minlength="8"
+                required
+            >
+
+
+            <button
+                class="primary-button"
+                type="submit"
+            >
+                Create account
+            </button>
+
+            <p
+                id="registerMessage"
+                class="message"
+            ></p>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================
+     CHAT APPLICATION
+========================= -->
+
+<main
+    id="chatScreen"
+    class="chat-app hidden"
+>
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================= -->
+
+    <aside class="sidebar">
+
+
+        <!-- HEADER -->
+
+        <div class="sidebar-header">
+
+            <div class="mini-logo">
+                A
+            </div>
+
+            <div class="profile-info">
+
+                <h2>
+                    AfriChat
+                </h2>
+
+                <span id="currentUsername">
+                    User
+                </span>
+
+            </div>
+
+
+            <button
+                id="logoutButton"
+                class="logout-button"
+                type="button"
+            >
+                Logout
+            </button>
+
+        </div>
+
+
+
+        <!-- =========================
+             SEARCH FRIENDS
+        ========================= -->
+
+        <div class="sidebar-section">
+
+            <div class="section-title">
+                Find Friends
+            </div>
+
+
+            <div class="friend-search">
+
+                <input
+                    id="friendSearchInput"
+                    type="text"
+                    placeholder="Search username..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="friendSearchButton"
+                    type="button"
+                >
+                    Search
+                </button>
+
+            </div>
+
+
+            <div
+                id="searchResults"
+                class="search-results"
+            ></div>
+
+        </div>
+
+
+
+        <!-- =========================
+             FRIEND REQUESTS
+        ========================= -->
+
+        <div class="sidebar-section">
+
+            <div class="section-title">
+                Friend Requests
+            </div>
+
+
+            <div
+                id="friendRequestsList"
+                class="friend-requests-list"
+            >
+
+                <p class="empty-text">
+                    No friend requests.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             FRIENDS
+        ========================= -->
+
+        <div class="sidebar-section friends-section">
+
+            <div class="section-title">
+                Friends
+            </div>
+
+
+            <div
+                id="friendsList"
+                class="friends-list"
+            >
+
+                <p class="empty-text">
+                    Loading friends...
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         CHAT AREA
+    ========================= -->
+
+    <section class="chat-area">
+
+
+        <!-- CHAT HEADER -->
+
+        <header class="chat-header">
+
+            <div>
+
+                <h2 id="chatFriendName">
+                    Select a friend
+                </h2>
+
+                <span id="chatStatus">
+                    Choose a friend to start chatting
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- MESSAGES -->
+
+        <div
+            id="messagesContainer"
+            class="messages-container"
+        >
+
+            <div class="welcome-chat">
+
+                <div class="welcome-icon">
+                    A
+                </div>
+
+                <h2>
+                    Welcome to AfriChat
+                </h2>
+
+                <p>
+                    Search for friends and start chatting.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MESSAGE INPUT -->
+
+        <form
+            id="messageForm"
+            class="message-form"
+        >
+
+            <input
+                id="messageInput"
+                type="text"
+                placeholder="Type a message..."
+                autocomplete="off"
+                disabled
+            >
+
+
+            <button
+                id="sendButton"
+                type="submit"
+                disabled
+            >
+                Send
+            </button>
+
+        </form>
+
+    </section>
+
+</main>
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
